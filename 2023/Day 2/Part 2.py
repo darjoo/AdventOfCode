@@ -1,20 +1,12 @@
 import math
+import re
 
 def PowerOfSet(input: str) -> bool:
-    # [red, green, blue]
     result = {'red':0, 'green':0, 'blue':0}
 
-    # "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green" 
-    # Result in
-    # [" 3 blue, 4 red", " 1 red, 2 green", ...]
-    sets = input.split(':')[1].split(';')
-
-    for cur_set in sets:
-        cur_cubes = cur_set.split(',')
-
-        for cur_cube in cur_cubes:
-            _, num, color = cur_cube.split(' ')
-            result[color] = max(result[color], int(num))
+    pulls = re.findall("(\d+) (\w+)", input)
+    for num, color in pulls:
+        result[color] = max(result[color], int(num))
 
     return math.prod(result.values())
 
