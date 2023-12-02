@@ -30,15 +30,11 @@ def parseInput(input: str) -> bool:
 
     return True
 
-filepath = 'C:\\Users\\jooda\\OneDrive\\TechNotes\\Coding Challeges\\AdventOfCode\\2023\\Day 2\\input.txt'
-f = open(filepath, 'r')
+f = open('input.txt', 'r')
 
 result = 0
 for id, line in enumerate(f.readlines()):
     answer = parseInput(line.rstrip())
-
-    print(f"{line}")
-    print(f"Answer: {answer}")
     
     if answer:
         result += id + 1
