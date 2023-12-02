@@ -12,9 +12,7 @@ def PowerOfSet(input: str) -> bool:
 
 f = open('input.txt', 'r')
 
-result = 0
-for line in f.readlines():
-    result += PowerOfSet(line.rstrip())
-
+result = sum(PowerOfSet(line) for line in f.readlines())
 print(f"Sum of power sets: {result}")
+
 f.close()
