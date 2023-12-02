@@ -1,8 +1,8 @@
-from functools import reduce
+import math
 
 def PowerOfSet(input: str) -> bool:
     # [red, green, blue]
-    result = [0] * 3
+    result = {'red':0, 'green':0, 'blue':0}
 
     # "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green" 
     # Result in
@@ -14,24 +14,14 @@ def PowerOfSet(input: str) -> bool:
 
         for cur_cube in cur_cubes:
             _, num, color = cur_cube.split(' ')
-            num = int(num)
-            match color:
-                case 'red':
-                    if result[0] < num:
-                        result[0] = num
-                case 'green':
-                    if result[1] < num:
-                        result[1] = num
-                case 'blue':
-                    if result[2] < num:
-                        result[2] = num
+            result[color] = max(result[color], int(num))
 
-    return reduce((lambda x, y: x* y), result)
+    return math.prod(result.values())
 
 f = open('input.txt', 'r')
 
 result = 0
-for id, line in enumerate(f.readlines()):
+for line in f.readlines():
     result += PowerOfSet(line.rstrip())
 
 print(f"Sum of power sets: {result}")
