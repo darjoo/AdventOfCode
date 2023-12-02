@@ -14,7 +14,7 @@ def getNumberPart2(string: str):
             if string[p1:p2-1] in rep:
                 number = rep[string[p1:p2-1]]
 
-        if number != 0:
+        if not number:
             second = number
             if not first:
                 first = number
