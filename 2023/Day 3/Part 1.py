@@ -107,8 +107,7 @@ def BuildNumbers(input: list[str]) -> list[int]:
 
     return numbers
 
-f = open('C:\\Users\\jooda\\OneDrive\\TechNotes\\Coding Challeges\\AdventOfCode\\2023\\Day 3\\input.txt', 'r')
-# f = open('input.txt', 'r')
+f = open('input.txt', 'r')
 
 check_cur = []
 result = 0
