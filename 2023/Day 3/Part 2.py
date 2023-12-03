@@ -16,38 +16,12 @@ def UpdateSymbols(r, c, value):
 
 def FindGearRatio() -> None:
     for (r, c) in symbols.keys():
-        # top
-        if (r-1, c) in numbers:
-            UpdateSymbols(r, c, numbers[(r-1, c)])
-            RemoveLeftRight(r-1, c, numbers.get((r-1, c)))
-        # top left
-        if (r-1, c-1) in numbers:
-            UpdateSymbols(r, c, numbers[(r-1, c-1)])
-            RemoveLeftRight(r-1, c-1, numbers.get((r-1, c-1)))
-        # top right
-        if (r-1, c+1) in numbers:
-            UpdateSymbols(r, c, numbers[(r-1, c+1)])
-            RemoveLeftRight(r-1, c+1, numbers.get((r-1, c+1)))
-        # left
-        if (r, c-1) in numbers:
-            UpdateSymbols(r, c, numbers[(r, c-1)])
-            RemoveLeftRight(r, c-1, numbers.get((r, c-1)))
-        # right
-        if (r, c+1) in numbers:
-            UpdateSymbols(r, c, numbers[(r, c+1)])
-            RemoveLeftRight(r, c+1, numbers.get((r, c+1)))
-        # bottom
-        if (r+1, c) in numbers:
-            UpdateSymbols(r, c, numbers[(r+1, c)])
-            RemoveLeftRight(r+1, c, numbers.get((r+1, c)))
-        # bottom left
-        if (r+1, c-1) in numbers:
-            UpdateSymbols(r, c, numbers[(r+1, c-1)])
-            RemoveLeftRight(r+1, c-1, numbers.get((r+1, c-1)))
-        # bottom right
-        if (r+1, c+1) in numbers:
-            UpdateSymbols(r, c, numbers[(r+1, c+1)])
-            RemoveLeftRight(r+1, c+1, numbers.get((r+1, c+1)))
+
+        for cr in (r-1, r, r+1):
+            for cc in (c-1, c, c+1):
+                if (cr, cc) in numbers:
+                    UpdateSymbols(r, c, numbers[(cr, cc)])
+                    RemoveLeftRight(cr, cc, numbers.get((cr, cc)))
 
 def BuildMaps(row: int, input: list[int]) -> None:
     for idx, value in enumerate(input):
