@@ -7,12 +7,7 @@ f.close()
 cards = [1] * len(nums)
 
 for i, cur_nums in enumerate(nums):
-    win, scratched = cur_nums.split('|') 
-    winnings = {w for w in re.findall(r'\d+', win)}
-    scratched = {s for s in re.findall(r'\d+', scratched)} 
+    for nc in range(i,i+len(re.findall(r'\b(\d+)\b(?=.*\b\1\b)', cur_nums))):
+        cards[nc+1] += cards[i]
 
-    inter = winnings.intersection(scratched)
-    
-    for nc in range(i+1, i+1+len(inter)):
-        cards[nc] += cards[i]
 print(sum(cards))

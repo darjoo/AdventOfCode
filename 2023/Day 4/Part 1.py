@@ -1,7 +1,7 @@
 import re
 
 f = open('input.txt', 'r')
-nums = [cards.split(':')[1] for cards in f.readlines()]
+nums = [cards.split(':|')[1:2] for cards in f.readlines()]
 f.close()
 
 result = 0
