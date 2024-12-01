@@ -6,14 +6,7 @@ def GetTotalDistance(left, right):
 def Part1():
     path = str(pathlib.Path(__file__).resolve().parent.joinpath('input.txt'))
     file = open(path, 'r')
-    left, right = [], []
-    for line in file.readlines():
-        left_value, right_value = [int(v.strip()) for v in line.split()]
-        left.append(left_value)
-        right.append(right_value)
-
-    left.sort()
-    right.sort()
+    left, right = list(map(sorted, zip(*[map(int, line.split()) for line in file.readlines()])))
     
     print(GetTotalDistance(left, right))
 
